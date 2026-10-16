@@ -32,6 +32,12 @@ function ItemForm({ item, onSave, onClose }) {
   const set = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }))
 
+  const step = (delta) =>
+    setForm((f) => ({
+      ...f,
+      quantity: Math.max(0, Number(f.quantity || 0) + delta),
+    }))
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!form.name.trim()) {
@@ -50,9 +56,9 @@ function ItemForm({ item, onSave, onClose }) {
       sku: form.sku.trim() || null,
       category: form.category.trim() || null,
       brand: form.brand.trim() || null,
+      quantity,
       price,
       min_stock: minStock,
-      ...(item ? {} : { quantity }),
     }
     onSave(payload)
   }
@@ -88,8 +94,8 @@ function ItemForm({ item, onSave, onClose }) {
                 value={form.brand}
                 onChange={set('brand')}
                 placeholder={
-                  form.category === 'Sensores'
-                    ? 'DSC, Paradox, Hikvision...'
+                  brandSuggestions.length
+                    ? brandSuggestions.join(', ') + '...'
                     : 'Ej: Hikvision'
                 }
               />
@@ -117,17 +123,32 @@ function ItemForm({ item, onSave, onClose }) {
             </label>
           </div>
           <div className="form-row">
-            {!item && (
-              <label>
-                Stock inicial
+            <label>
+              {item ? 'Stock' : 'Stock inicial'}
+              <div className="stepper">
+                <button
+                  type="button"
+                  className="btn icon"
+                  onClick={() => step(-1)}
+                  disabled={Number(form.quantity) <= 0}
+                >
+                  −
+                </button>
                 <input
                   type="number"
                   min="0"
                   value={form.quantity}
                   onChange={set('quantity')}
                 />
-              </label>
-            )}
+                <button
+                  type="button"
+                  className="btn icon"
+                  onClick={() => step(1)}
+                >
+                  +
+                </button>
+              </div>
+            </label>
             <label>
               Stock mínimo
               <input

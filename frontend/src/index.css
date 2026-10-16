@@ -280,6 +280,17 @@ td.name {
   gap: 12px;
 }
 
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepper input {
+  width: 80px;
+  text-align: center;
+}
+
 .form-error {
   color: var(--danger);
   font-size: 0.85rem;

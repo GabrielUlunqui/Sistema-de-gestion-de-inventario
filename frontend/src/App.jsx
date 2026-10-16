@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 import {
-  adjustStock,
   createItem,
   deleteItem,
   errorMessage,
@@ -71,15 +70,6 @@ function App() {
     }
   }
 
-  const handleAdjust = async (id, delta) => {
-    try {
-      await adjustStock(id, delta)
-      refresh()
-    } catch (err) {
-      pushToast(errorMessage(err), 'error')
-    }
-  }
-
   const handleDelete = async (id) => {
     try {
       await deleteItem(id)
@@ -116,7 +106,6 @@ function App() {
 
       <InventoryTable
         items={items}
-        onAdjust={handleAdjust}
         onEdit={(item) => {
           setEditing(item)
           setFormOpen(true)

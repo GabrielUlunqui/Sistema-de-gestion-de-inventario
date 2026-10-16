@@ -56,8 +56,8 @@ run.bat       :: levanta la app completa
 ## Funcionalidades
 
 - **CRUD completo** de ítems: nombre, SKU, categoría, marca, precio, stock mínimo
-- **Categorías**: Cámaras, DVR, Almacenamiento, Sensores, Cables, Fuentes, Conectores
-- **Marcas**: campo libre con sugerencias por categoría (Sensores: DSC, Paradox, Hikvision)
+- **Categorías**: Centrales, Teclados, GPRS, Sensores, Cámaras, DVR, Almacenamiento, Cables, Fuentes, Conectores
+- **Marcas**: campo libre con sugerencias por categoría (Teclados: A2K4, A2K4 NG, DSC, Intelbras, Paradox · Sensores: DSC, Paradox, Hikvision)
 - **Control de stock**: botones +/- inline, sin stock negativo (validado en cliente y servidor)
 - **Alertas automáticas**: badge de "Stock bajo" cuando `cantidad <= stock mínimo`, "Sin stock" en 0
 - **Dashboard**: total de productos, unidades, valor del inventario, alertas

@@ -43,6 +43,7 @@ class ItemUpdate(BaseModel):
     sku: str | None = None
     category: str | None = None
     brand: str | None = None
+    quantity: int | None = None
     price: float | None = None
     min_stock: int | None = None
 
@@ -53,7 +54,7 @@ class ItemUpdate(BaseModel):
             raise ValueError("El nombre no puede estar vacío.")
         return v.strip() if v is not None else v
 
-    @field_validator("price", "min_stock")
+    @field_validator("price", "min_stock", "quantity")
     @classmethod
     def not_negative(cls, v):
         if v is not None and v < 0:

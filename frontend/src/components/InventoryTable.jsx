@@ -4,7 +4,7 @@ function stockBadge(item) {
   return <span className="badge ok">En stock</span>
 }
 
-function InventoryTable({ items, onAdjust, onEdit, onDelete }) {
+function InventoryTable({ items, onEdit, onDelete }) {
   if (items.length === 0) {
     return <p className="empty">No hay ítems que coincidan con la búsqueda.</p>
   }
@@ -33,24 +33,7 @@ function InventoryTable({ items, onAdjust, onEdit, onDelete }) {
               <td>{item.brand || '—'}</td>
               <td className="num">${item.price.toFixed(2)}</td>
               <td className="num">
-                <div className="stock-cell">
-                  <button
-                    className="btn icon"
-                    onClick={() => onAdjust(item.id, -1)}
-                    disabled={item.quantity === 0}
-                    title="Quitar 1"
-                  >
-                    −
-                  </button>
-                  <span className="qty">{item.quantity}</span>
-                  <button
-                    className="btn icon"
-                    onClick={() => onAdjust(item.id, 1)}
-                    title="Agregar 1"
-                  >
-                    +
-                  </button>
-                </div>
+                <span className="qty">{item.quantity}</span>
               </td>
               <td>{stockBadge(item)}</td>
               <td>
